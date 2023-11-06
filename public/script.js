@@ -1,16 +1,20 @@
-const gun = Gun('http://localhost:3000/gun');
+const Gun = require('gun');
+const gun = new Gun('http://localhost:3000/gun');
 
 document.getElementById("submitPost").addEventListener('click', () => {
+
   const content = document.getElementById("postContent").value;
   
-  gun.get('posts').set({content});
-}); 
+  gun.get('posts').set({content}); 
+
+});
 
 const renderPosts = posts => {
 
   let postElements = '';
 
   Object.values(posts).forEach(post => {
+
     const postElement = `
       <div class="post">
         <p>${post.content}</p>
@@ -18,6 +22,7 @@ const renderPosts = posts => {
     `;
     
     postElements += postElement;
+
   });
 
   document.getElementById('posts').innerHTML = postElements;
