@@ -1,4 +1,4 @@
-// Load gun from CDN 
+import Gun from 'https://cdn.jsdelivr.net/npm/gun/gun.js';
 const gun = Gun();
 
 document.getElementById("submitPost").addEventListener('click', () => {
