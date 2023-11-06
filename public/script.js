@@ -1,4 +1,4 @@
-//const Gun = require('gun');
+const Gun = require('gun');
 const gun = new Gun('http://localhost:3000/gun');
 
 document.getElementById("submitPost").addEventListener('click', () => {
