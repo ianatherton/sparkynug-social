@@ -1,11 +1,11 @@
-const Gun = require('gun');
-const gun = new Gun('http://localhost:3000/gun');
+// Load gun from CDN 
+const gun = Gun();
 
 document.getElementById("submitPost").addEventListener('click', () => {
 
   const content = document.getElementById("postContent").value;
-  
-  gun.get('posts').set({content}); 
+
+  gun.get('posts').set({content});
 
 });
 
@@ -17,7 +17,7 @@ const renderPosts = posts => {
 
     const postElement = `
       <div class="post">
-        <p>${post.content}</p>
+        <p>${post.content}</p>  
       </div>
     `;
     
@@ -30,5 +30,5 @@ const renderPosts = posts => {
 };
 
 gun.get('posts').map().once(posts => {
-  renderPosts(posts);
+  renderPosts(posts); 
 });
