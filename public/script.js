@@ -1,28 +1,29 @@
 const gun = Gun('http://localhost:3000/gun');
 
-// Render posts 
+document.getElementById("submitPost").addEventListener('click', () => {
+  const content = document.getElementById("postContent").value;
+  
+  gun.get('posts').set({content});
+}); 
+
 const renderPosts = posts => {
-  const postElements = Object.values(posts).map(post => {
-    return `
+
+  let postElements = '';
+
+  Object.values(posts).forEach(post => {
+    const postElement = `
       <div class="post">
-        <h3>${post.title}</h3>
-        <p>${post.content}</p>  
+        <p>${post.content}</p>
       </div>
     `;
+    
+    postElements += postElement;
   });
 
-  document.getElementById('posts').innerHTML = postElements.join('');
-}
+  document.getElementById('posts').innerHTML = postElements;
+
+};
 
 gun.get('posts').map().once(posts => {
   renderPosts(posts);
 });
-
-// Submitting new posts...
-
-// Logo
-document.getElementById('logo').innerHTML = `
-  <svg>
-    <!-- Roygbiv colored CalmVerse logo --> 
-  </svg>
-`;
